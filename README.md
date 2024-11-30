@@ -195,7 +195,7 @@ You can customize various settings through the web interface:
 
 ## License
 
-This project is licensed under the Mozilla Public License Version 2.0. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the Mozilla Public License Version 2.0. See the [License](License.md) file for details.
 
 ## Additional Resources
 
