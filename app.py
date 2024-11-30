@@ -13,11 +13,20 @@ from googleapiclient.http import MediaIoBaseDownload
 from atlassian import Confluence
 import io
 
-import streamlit as st
-# Display the logo
-st.image("/logo.png", width=400)  # Adjust the width as needed
+# Optional: Set page configuration, including title and favicon
+st.set_page_config(
+    page_title="RAGForge",
+    # Uncomment and set the favicon URL if desired
+    page_icon="https://pinsker.ai/web/image/1479-c1f10525/icon.png",
+    layout="centered",
+    initial_sidebar_state="expanded",
+)
 
+# Display the logo in the sidebar using the provided URL
+logo_url = "https://pinsker.ai/web/image/1477-9ebaaf6e/ragforge.webp"
+st.sidebar.image(logo_url, width=200)  # Adjust the width as needed
 
+# Set title and subtitle in the main page
 st.title("RAGForge")
 st.subheader("RAG Application with Ollama Embedding and Agent")
 

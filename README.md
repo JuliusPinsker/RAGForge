@@ -2,7 +2,7 @@
 
 ## Phidata RAG Application with Ollama Agent and Embedding
 
-![Dashboard]()
+![Dashboard](https://pinsker.ai/web/image/1484-c28e0cf9/Screenshot%20from%202024-11-30%2002-16-37.webp)
 
 This application serves as a template for a completely local agentic Retrieval-Augmented Generation (RAG) setup with a clean web interface. It integrates vectorization capabilities using **PhiData** to organize and retrieve knowledge efficiently from various data sources. The application supports:
 
