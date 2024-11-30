@@ -2,6 +2,8 @@
 
 ## Phidata RAG Application with Ollama Agent and Embedding
 
+![Dashboard]()
+
 This application serves as a template for a completely local agentic Retrieval-Augmented Generation (RAG) setup with a clean web interface. It integrates vectorization capabilities using **PhiData** to organize and retrieve knowledge efficiently from various data sources. The application supports:
 
 - Local folders
@@ -30,11 +32,18 @@ Before installing and running the application, ensure you have the following ins
 - **[Docker](https://docs.docker.com/engine/install/)**
 - **[Docker Compose](https://docs.docker.com/compose/install/)**
 - **[Ollama](https://ollama.com/download)**
-- **Llama 3.2 Model**: Pull the model using Ollama with the command:
+- **Required Models**:
+  - **Llama 3.2 Model**: Pull the model using Ollama with the command:
 
-  ```bash
-  ollama pull llama3.2
-  ```
+    ```bash
+    ollama pull llama3.2
+    ```
+
+  - **OpenHermes Model**: Pull the `openhermes` model using Ollama with the command:
+
+    ```bash
+    ollama pull openhermes
+    ```
 
 ## Installation
 
@@ -78,6 +87,8 @@ The embedding model used in this application can be specified in the `app.py` fi
 
 To learn more about embedding models and how to configure them, please refer to the [PhiData documentation on Ollama Embedder](https://docs.phidata.com/embedder/ollama).
 
+**Note**: Ensure that both `llama3.2` and `openhermes` models are pulled using Ollama before running the application.
+
 ## Usage
 
 Once the application is running, you can access the web interface at [http://localhost:8501](http://localhost:8501).
@@ -115,7 +126,7 @@ This application employs vectorization to represent documents and text files as 
    - Stores all document embeddings in a structured format for fast retrieval.
 
 2. **Embedding Model**: 
-   - Embeddings are generated using the `OllamaEmbedder` class from **PhiData**, which leverages state-of-the-art models like `llama3.2`.
+   - Embeddings are generated using the `OllamaEmbedder` class from **PhiData**, which leverages state-of-the-art models like `llama3.2` and `openhermes`.
 
 3. **Knowledge Base Integration**:
    - The application uses `AgentKnowledge`, a knowledge base class that connects to the vector database.
