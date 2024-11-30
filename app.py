@@ -13,8 +13,13 @@ from googleapiclient.http import MediaIoBaseDownload
 from atlassian import Confluence
 import io
 
-# Streamlit app
-st.title("RAG Application with Ollama Embedding")
+import streamlit as st
+# Display the logo
+st.image("/logo.png", width=400)  # Adjust the width as needed
+
+
+st.title("RAGForge")
+st.subheader("RAG Application with Ollama Embedding and Agent")
 
 # Sidebar for Knowledge Base Settings
 st.sidebar.title("Knowledge Base Settings")
