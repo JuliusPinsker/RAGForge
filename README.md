@@ -4,7 +4,9 @@
 
 ![Dashboard](https://pinsker.ai/web/image/1484-c28e0cf9/Screenshot%20from%202024-11-30%2002-16-37.webp)
 
-This application serves as a template for a completely local agentic Retrieval-Augmented Generation (RAG) setup with a clean web interface. It integrates vectorization capabilities using **PhiData** to organize and retrieve knowledge efficiently from various data sources. The application supports:
+This application serves as a template for a completely local agentic Retrieval-Augmented Generation (RAG) setup with a clean web interface. It integrates vectorization capabilities using **PhiData** to organize and retrieve knowledge efficiently from various data sources. The application utilizes **Open Hermes** for retrieval and context refinement, and **Llama 3.2** for response generation, providing a robust framework for knowledge-driven conversational AI.
+
+The application supports:
 
 - Local folders
 - Drag and drop files
@@ -18,6 +20,7 @@ This application serves as a template for a completely local agentic Retrieval-A
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
+- [Model Workflow](#model-workflow)
 - [Vectorization and Knowledge Base](#vectorization-and-knowledge-base)
 - [Customization](#customization)
 - [License](#license)
@@ -83,11 +86,12 @@ This command will:
 
 ### Embedding Model
 
-The embedding model used in this application can be specified in the `app.py` file within the `create_knowledge_base` function. The default embedding model is `llama3.2`, but you can specify another model according to your preferences.
+The embedding model used in this application can be specified in the `app.py` file within the `create_knowledge_base` function. The default embedding model is `llama3.2`, but the retrieval and response generation process leverages both `openhermes` and `llama3.2`:
 
-To learn more about embedding models and how to configure them, please refer to the [PhiData documentation on Ollama Embedder](https://docs.phidata.com/embedder/ollama).
+- **Open Hermes** handles retrieval and context refinement from the knowledge base.
+- **Llama 3.2** generates the final responses.
 
-**Note**: Ensure that both `llama3.2` and `openhermes` models are pulled using Ollama before running the application.
+Ensure that both models are pulled using Ollama before running the application.
 
 ## Usage
 
@@ -113,6 +117,31 @@ Once the application is running, you can access the web interface at [http://loc
 
 ---
 
+## Model Workflow
+
+This application employs **Open Hermes** and **Llama 3.2** in a collaborative workflow to enhance retrieval-augmented generation:
+
+### Open Hermes: Retrieval and Context Building
+- **Task**: Fetches relevant documents from the knowledge base.
+- **Functionality**:
+  - Performs similarity searches against the vector database.
+  - Summarizes and refines retrieved content to provide the most relevant context for queries.
+- **Specialty**: Ensures precise and domain-relevant information is selected for response generation.
+
+### Llama 3.2: Response Generation
+- **Task**: Generates conversational responses based on the context retrieved by Open Hermes.
+- **Functionality**:
+  - Processes retrieved context into natural language answers.
+  - Ensures the responses are coherent, detailed, and user-friendly.
+  - Incorporates sources into responses for traceability.
+
+### Workflow Integration
+1. **Query Interpretation**: The user’s query is passed to Open Hermes.
+2. **Document Retrieval**: Open Hermes retrieves and refines relevant documents from the knowledge base.
+3. **Response Generation**: Llama 3.2 generates the final response based on the retrieved context.
+
+---
+
 ## Vectorization and Knowledge Base
 
 ### Vectorization Overview
@@ -131,12 +160,6 @@ This application employs vectorization to represent documents and text files as 
 3. **Knowledge Base Integration**:
    - The application uses `AgentKnowledge`, a knowledge base class that connects to the vector database.
    - Handles the organization of embeddings, retrieval of documents, and inclusion of relevant sources in the responses.
-
-### Knowledge Base Workflow
-
-- **Ingestion**: Files (PDF, TXT, Markdown) are processed, vectorized, and stored in the vector database.
-- **Retrieval**: Queries are converted into embeddings and matched against the stored document embeddings using similarity search.
-- **Augmented Responses**: Retrieved documents are used to construct meaningful and source-inclusive responses.
 
 ---
 
@@ -177,11 +200,3 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Additional Resources
 
 To learn more about configuring the embedding model and other advanced features, please visit the [PhiData documentation on Ollama Embedder](https://docs.phidata.com/embedder/ollama).
-
----
-
-**Note**: Ensure you comply with all licensing requirements for the models and tools used in this application.
-
-## Contributing
-
-Contributions are welcome! If you have suggestions or improvements, feel free to submit a pull request or open an issue in the repository.
