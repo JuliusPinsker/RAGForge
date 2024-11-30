@@ -12,15 +12,13 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     libffi-dev \
     libssl-dev \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install additional dependencies for AWS, Google Drive, and Confluence
-RUN apt-get update && apt-get install -y \
     libmagic-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Clone the PhiData repository
-RUN git clone https://github.com/phidatahq/phidata.git
+# Clone the PhiData repository and checkout the specific commit
+RUN git clone https://github.com/phidatahq/phidata.git && \
+    cd phidata && \
+    git checkout c7baaf1a0cd4546c0a124924bfcc9150f391da5f
 
 # Navigate to the Ollama RAG directory
 WORKDIR /app/phidata/cookbook/llms/ollama/rag
@@ -35,9 +33,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 ENV DATABASE_URL=postgresql://ai:ai@db:5432/ai
 
 # Create application_materials directory and download the provided PDF
-RUN mkdir -p /app/application_materials/knowledge_files
-# Replace the URL below with the actual PDF link you provided
-RUN wget -O /app/application_materials/knowledge_files/sample.pdf https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf
+RUN mkdir -p /app/application_materials/knowledge_files && \
+    wget -O /app/application_materials/knowledge_files/sample.pdf https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf
 
 # Copy the modified app.py that uses the OllamaEmbedder
 COPY app.py .

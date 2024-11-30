@@ -1,7 +1,8 @@
-# OllamaRAG-App
-## RAG Application with Ollama Agent and Embedding
+# RAGForge
 
-This application serves as a template for a completely local agentic Retrieval-Augmented Generation (RAG) setup with a clean web interface. It integrates vectorization capabilities to organize and retrieve knowledge efficiently from various data sources. The application supports:
+## Phidata RAG Application with Ollama Agent and Embedding
+
+This application serves as a template for a completely local agentic Retrieval-Augmented Generation (RAG) setup with a clean web interface. It integrates vectorization capabilities using **PhiData** to organize and retrieve knowledge efficiently from various data sources. The application supports:
 
 - Local folders
 - Drag and drop files
@@ -19,10 +20,13 @@ This application serves as a template for a completely local agentic Retrieval-A
 - [Customization](#customization)
 - [License](#license)
 - [Additional Resources](#additional-resources)
+- [Contributing](#contributing)
 
 ## Prerequisites
 
 Before installing and running the application, ensure you have the following installed on your system:
+
+- **[Git](https://git-scm.com/downloads)**
 - **[Docker](https://docs.docker.com/engine/install/)**
 - **[Docker Compose](https://docs.docker.com/compose/install/)**
 - **[Ollama](https://ollama.com/download)**
@@ -36,54 +40,41 @@ Before installing and running the application, ensure you have the following ins
 
 Follow these steps to install and run the application:
 
-### 1. Download the Installation Script
+### 1. Clone the Repository
 
-Download the installation script using `wget`:
-
-```bash
-wget dummylink -O install.sh
-```
-
-*(Replace `dummylink` with the actual link to the script when available.)*
-
-### 2. Make the Script Executable
-
-Change the permissions of the script to make it executable:
+Clone the repository to your local machine using `git clone`:
 
 ```bash
-chmod +x install.sh
+git clone https://github.com/JuliusPinsker/RAGForge.git
 ```
 
-### 3. Run the Installation Script
+### 2. Navigate to the Project Directory
 
-Execute the script:
+Change your current directory to the cloned repository:
 
 ```bash
-./install.sh
+cd RAGForge
 ```
 
-The script will perform the following tasks:
+### 3. Build and Run the Docker Services
 
-- Create a `Dockerfile` for building the application image.
-- Create a `docker-compose.yml` file to define the services.
-- Create an `app.py` file with the application code.
-- Create a `requirements.txt` file with all necessary dependencies.
-
-### 4. Build and Run the Docker Services
-
-After running the script, build and start the services using Docker Compose:
+Use Docker Compose to build the Docker images and start the services in detached mode:
 
 ```bash
-docker-compose up --build
+docker compose up --build -d
 ```
 
-This command will build the application image and start the services defined in `docker-compose.yml`.
+This command will:
+
+- Clone the **PhiData** repository.
+- Build the application image using the provided `Dockerfile`.
+- Start the PostgreSQL database and the application services as defined in `docker-compose.yml`.
 
 ## Configuration
 
 ### Embedding Model
 
-The embedding model used in this application can be specified in the `app.py` file within the `create_knowledge_base` function. The default embedding model is `openhermes`, but you can specify another model according to your preferences.
+The embedding model used in this application can be specified in the `app.py` file within the `create_knowledge_base` function. The default embedding model is `llama3.2`, but you can specify another model according to your preferences.
 
 To learn more about embedding models and how to configure them, please refer to the [PhiData documentation on Ollama Embedder](https://docs.phidata.com/embedder/ollama).
 
@@ -115,7 +106,7 @@ Once the application is running, you can access the web interface at [http://loc
 
 ### Vectorization Overview
 
-This application employs vectorization to represent documents and text files as high-dimensional numerical embeddings. These embeddings allow efficient semantic search and retrieval of relevant documents based on user queries.
+This application employs vectorization to represent documents and text files as high-dimensional numerical embeddings using **PhiData**. These embeddings allow efficient semantic search and retrieval of relevant documents based on user queries.
 
 ### Components of Vectorization
 
@@ -124,7 +115,7 @@ This application employs vectorization to represent documents and text files as 
    - Stores all document embeddings in a structured format for fast retrieval.
 
 2. **Embedding Model**: 
-   - Embeddings are generated using the `OllamaEmbedder` class, which leverages state-of-the-art models like `llama3.2`.
+   - Embeddings are generated using the `OllamaEmbedder` class from **PhiData**, which leverages state-of-the-art models like `llama3.2`.
 
 3. **Knowledge Base Integration**:
    - The application uses `AgentKnowledge`, a knowledge base class that connects to the vector database.
@@ -180,6 +171,6 @@ To learn more about configuring the embedding model and other advanced features,
 
 **Note**: Ensure you comply with all licensing requirements for the models and tools used in this application.
 
-# Contributing
+## Contributing
 
 Contributions are welcome! If you have suggestions or improvements, feel free to submit a pull request or open an issue in the repository.
