@@ -2,6 +2,8 @@
 
 ## Phidata RAG Application with Ollama Agent and Embedding
 
+![Dashboard](demo.gif)
+
 This application serves as a template for a completely local agentic Retrieval-Augmented Generation (RAG) setup with a clean web interface. It integrates vectorization capabilities using **PhiData** to organize and retrieve knowledge efficiently from various data sources. The application utilizes **Open Hermes** for retrieval and context refinement, and **Llama 3.2** for response generation, providing a robust framework for knowledge-driven conversational AI.
 
 The application supports:
@@ -18,7 +20,6 @@ The application supports:
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
-- [Demo](#demo)
 - [Model Workflow](#model-workflow)
 - [Vectorization and Knowledge Base](#vectorization-and-knowledge-base)
 - [Customization](#customization)
@@ -114,15 +115,6 @@ Once the application is running, you can access the web interface at [http://loc
 - **Source Inclusion**: Responses include sources for better traceability.
 - **Chat History**: View previous interactions for context.
 
-## Demo
-
-Below is a demonstration of the application in action:
-
-<video controls width="640">
-  <source src="demo.webm" type="video/webm">
-  Your browser does not support the video tag.
-</video>
-
 ---
 
 ## Model Workflow
@@ -208,7 +200,3 @@ This project is licensed under the Mozilla Public License Version 2.0. See the [
 ## Additional Resources
 
 To learn more about configuring the embedding model and other advanced features, please visit the [PhiData documentation on Ollama Embedder](https://docs.phidata.com/embedder/ollama).
-
-## Contributing
-
-Contributions to the project are welcome. Please refer to the contributing guidelines in the repository for further details.
