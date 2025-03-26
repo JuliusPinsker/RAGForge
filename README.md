@@ -2,7 +2,10 @@
 
 ## Phidata RAG Application with Ollama Agent and Embedding
 
-![Dashboard](demo.gif)
+<figure>
+  <img src="demo.gif" alt="Dashboard">
+  <figcaption>This is a demo of a midsized model on a criminally underpowered laptop and that's why it's slow.</figcaption>
+</figure>
 
 This application serves as a template for a completely local agentic Retrieval-Augmented Generation (RAG) setup with a clean web interface. It integrates vectorization capabilities using **PhiData** to organize and retrieve knowledge efficiently from various data sources. The application utilizes **Open Hermes** for retrieval and context refinement, and **Llama 3.2** for response generation, providing a robust framework for knowledge-driven conversational AI.
 
